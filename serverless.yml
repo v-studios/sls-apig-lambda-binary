@@ -1,0 +1,13 @@
+service: binaryapi
+
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  binaryapi:
+    handler: binaryapi.handler
+    events:
+      - http:
+          path: /
+          method: post
