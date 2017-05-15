@@ -134,10 +134,12 @@ or APIG will return `application/json`::
 We must set the `Accept` header to get APIG to return us binary
 instead of the base64 encoded data, but now we get our image::
 
-  curl -H "Content-Type: image/gif" \
+  curl -v \
+       -H "Content-Type: image/gif" \
        -H "Accept: image/jpeg" \
-              --data-binary @CSLOGO.gif $API \
-       > OUT.JPG
+       --data-binary @CSLOGO.gif \
+       $API2 \
+       > cslogo.jpg
 
 If we omit the `Accept`, or ask for `image/\*` or `\*/\*', we get the
 base64 of the JPG, not the binary. This is not helped by adding
