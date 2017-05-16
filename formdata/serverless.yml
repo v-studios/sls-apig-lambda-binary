@@ -1,0 +1,13 @@
+service: formdata
+
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  formdata:
+    handler: formdata.handler
+    events:
+      - http:
+          path: /
+          method: post
