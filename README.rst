@@ -1,14 +1,26 @@
-===========
- BINARYAPI
-===========
+===========================================================
+ Serverless API Gateway and Lamba with Binary Input/Output
+===========================================================
 
-Try to get binary upload working, then download.
+It's not obvious from the AWS docs how to get binary data (like
+images) into or out of a Lambda_ function via the `API Gateway`_. Adding
+the Serverless_ framework makes this even more opaque.
 
-Create the function in serverless.yml, set the binary type for
-image/gif in the AWS APIG console, and see what we get.
+After a bunch of reading, trial and error, the code and serverless
+config here are a minimal example of how to do just that, using Python
+for the Lambda function.
 
-How do we config lambda without the lambda-proxy integration to
-specify paths, types, etc?
+Below, we talk first about how to accept binary data, then how to
+return it.
+
+TL;DR:
+
+* Manually set APIG Binary Support through the console for your
+  content types
+* Specify `Content-Type` and `Accept` headers to make APIG convert
+  binary and base64 strings
+* In Lambda, Decode from base64 on input, encode to base64 on output
+
 
 Create and Deploy Lambda, APIG
 ==============================
@@ -25,11 +37,11 @@ them::
 
 After function and APIG are created you can just upload the function::
 
-  time sls deploy -v function --function binaryapi
+  sls deploy -v function --function binaryapi
 
 After you've invoked it once, you can tail the logs in your terminal, rather than reloading the CloudWatch logs::
 
-  sls logs --tail --function socratesapi
+  sls logs --tail --function binaryapi &
 
 Upload Binary Payload
 =====================
@@ -37,18 +49,18 @@ Upload Binary Payload
 Send single binary payload
 --------------------------
 
-Send a binary payload, so no filename=, no file=, etc::
+Send a binary payload (no filename=, no file=, etc)::
 
-  curl -v -d @CSLOGO.gif $API | python -mjson.tool
+  curl -v --data @CSLOGO.gif $API | python -mjson.tool
 
 The event output shows we get a truncated body, and strangely a form-encoded::
 
     "event": {
-        "body": "GIF87a\u001a",    ### TRUNCATED
+        "body": "GIF87a\u001a",    # <-- TRUNCATED FILE
         "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
 
-Set binary::
+Set the data to be binary::
 
  curl -v --data-binary @CSLOGO.gif $API | python -mjson.tool
 
@@ -59,7 +71,9 @@ Set content type::
 
   curl -v -H "Content-Type: image/gif" --data-binary @CSLOGO.gif $API
 
-function now gets correct content type, still errors on log; comment it. Now we get output but it shows the length of the body is wrong, 112 instead of 118.
+Function now gets correct content type, still errors on log; comment
+it. Now we get output but it shows the length of the body is wrong,
+112 instead of 118.
 
 Enable image/gif in AWS Console > APIs > my API > Binary Support.
 
@@ -82,12 +96,13 @@ Note that isBase64Encoded is True; if we decode, we get 118
 chars. Looks promising.
 
 TL;DR:
+
 * after creating APIG, set binary for your content type
 * set Content-Type on the curl request
 * base64decode the body (the isBase64Encoded should be true)
 
-Setting Filename
-----------------
+TODO: Setting Filename
+----------------------
 
 Easiest way is with a form, but we seem to be having problems with
 form-encoded data. Need to try some more.
@@ -185,3 +200,9 @@ http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-
 
 This doc explains content type conversions but I don't know how to apply it to serverless.yml.
 http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings-workflow.html
+
+
+
+.. _`API Gateway`: https://aws.amazon.com/api-gateway/
+.. _Lambda: https://aws.amazon.com/lambda/
+.. _Serverless: https://serverless.com/
