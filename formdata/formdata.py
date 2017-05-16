@@ -16,9 +16,8 @@ from traceback import format_exc
 def handler(event, context):
     try:
         print('# event: {}'.format(event))
-        content_type = event['headers']['Content-Type']
-        body = event['body']
 
+        content_type = event['headers']['Content-Type']
         (ctype, pdict) = parse_header(content_type)
         print('# 1. ctype={} pdict={}'.format(ctype, pdict))
         # parse_header bug? wants bytes for boundary not str
@@ -31,7 +30,15 @@ def handler(event, context):
         # lots of bug
         # complaints from 2009-2017 on this module not working.
 
-        body_bytes = bytes(body, 'utf')
+        # With APIG Binary set, we get same Content Type but
+        # isBase64Encoded=True and body is encoded.
+        body = event['body']
+        if event['isBase64Encoded'] is True:
+            print('# b64 body={}'.format(body))
+            body_bytes = b64decode(body)
+        else:
+            body_bytes = bytes(body, 'utf')
+        print('# body_bytes={}'.format(body_bytes))
         body_fp = BytesIO(body_bytes)
         thing = parse_multipart(body_fp, pdict)
         print('# thing: {}'.format(thing))
