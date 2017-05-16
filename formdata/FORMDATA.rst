@@ -43,3 +43,10 @@ the CLI::
 Or on the AWS console, APIGI, chose your gateway, then Resources,
 Actions -> Deploy API.
 
+Note that you CAN set wildcards on the APIG Binary Support, just
+remember to redeploy. For this app, I've replaced my image/jpeg with
+`image/*` and verified output works as expected.
+
+One day maybe AWS CloudFormation will learn about Binary Support so
+that the Serverless Framework team can add this to the serverless.yml
+file.
