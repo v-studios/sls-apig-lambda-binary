@@ -1,0 +1,52 @@
+{
+    "body": "--------------------------dc53a7a19017bf09\r\nContent-Disposition: form-data; name=\"file\"; filename=\"CSLOGO.gif\"\r\nContent-Type: image/gif\r\n\r\nGIF87a\u001a\u0000\u001a\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffd,\u0000\u0000\u0000\u0000\u001a\u0000\u001a\u0000\u0000\u0002U\f\ufffd\ufffd\ufffd\u0006\u0001\ufffd\ufffd\ufffd=\ufffd\ufffd[\ufffd\ufffdm\ufffd\ufffd\u0015\ufffd\ufffd\ufffd\u01e8\u0017\ufffd\ufffd\u8241\ufffdz\ufffdq8\ufffd)o\ufffd\u0746=\u001a\ufffd\ufffd3Jx8\ufffd\f(|\u0012\ufffd=\ufffdH\ufffd\f\t\ufffd\ufffd\ufffd\u000b\ufffd\ufffdJ}9\ufffd\ufffd\ufffd\rz\u001b\u0016\ufffd\ufffd\ufffdN\u0004\n\u0000;\r\n--------------------------dc53a7a19017bf09--\r\n",
+    "headers": {
+        "Accept": "*/*",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "multipart/form-data; boundary=------------------------dc53a7a19017bf09",
+        "Host": "fyijtyjmyl.execute-api.us-east-1.amazonaws.com",
+        "User-Agent": "curl/7.43.0",
+        "Via": "1.1 73388dc3c76783aef93703e1dfb340e2.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "fkpz3nSCGE7Ye-lBUCBRTxiutbxEGZA6IweaQ8lqf9zJwKOflwXJ9A==",
+        "X-Amzn-Trace-Id": "Root=1-591afb30-66d168ec179f62b5620033ff",
+        "X-Forwarded-For": "38.88.33.58, 54.182.230.76",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "httpMethod": "POST",
+    "isBase64Encoded": false,
+    "path": "/",
+    "pathParameters": null,
+    "queryStringParameters": null,
+    "requestContext": {
+        "accountId": "304932368623",
+        "apiId": "fyijtyjmyl",
+        "httpMethod": "POST",
+        "identity": {
+            "accessKey": null,
+            "accountId": null,
+            "apiKey": "",
+            "caller": null,
+            "cognitoAuthenticationProvider": null,
+            "cognitoAuthenticationType": null,
+            "cognitoIdentityId": null,
+            "cognitoIdentityPoolId": null,
+            "sourceIp": "38.88.33.58",
+            "user": null,
+            "userAgent": "curl/7.43.0",
+            "userArn": null
+        },
+        "path": "/dev/",
+        "requestId": "94e1eae1-3a39-11e7-80a3-41226daf3fdd",
+        "resourceId": "tssz2bq8a3",
+        "resourcePath": "/",
+        "stage": "dev"
+    },
+    "resource": "/",
+    "stageVariables": null
+}
