@@ -18,27 +18,28 @@ Curl's -F is said to do multipart/form-data so lets start there::
 
   curl -v -F file=@../CSLOGO.gif $FORMDATA | python -mjson.tool
 
-The event body is a form with embedded binary, base64Encoded=False,
-and form proper content-type::
+I have to set APIG Binary Support for `multipart/form-data` to get the
+binary safely.
 
-  {
-      "body": "--------------------------dc53a7a19017bf09\r\nContent-Disposition: form-data; name=\"file\"; filename=\"CSLOGO.gif\"\r\nContent-Type: image/gif\r\n\r\nGIF87a\u001a\u0000\u001a\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffd,\u0000\u0000\u0000\u0000\u001a\u0000\u001a\u0000\u0000\u0002U\f\ufffd\ufffd\ufffd\u0006\u0001\ufffd\ufffd\ufffd=\ufffd\ufffd[\ufffd\ufffdm\ufffd\ufffd\u0015\ufffd\ufffd\ufffd\u01e8\u0017\ufffd\ufffd\u8241\ufffdz\ufffdq8\ufffd)o\ufffd\u0746=\u001a\ufffd\ufffd3Jx8\ufffd\f(|\u0012\ufffd=\ufffdH\ufffd\f\t\ufffd\ufffd\ufffd\u000b\ufffd\ufffdJ}9\ufffd\ufffd\ufffd\rz\u001b\u0016\ufffd\ufffd\ufffdN\u0004\n\u0000;\r\n--------------------------dc53a7a19017bf09--\r\n",
-      "headers": {
-          "Content-Type": "multipart/form-data; boundary=------------------------dc53a7a19017bf09",
-      },
-      "isBase64Encoded": false,
+Then I can parse the form with Python-3's `CGI` libraray (which seems
+buggy), and grab the file as a base64-encoded object. After decoding I
+can save to disk and convert to JPG.
 
-The body, after newline expansion, is::
+Then I can return read the JPG, base64-encode, and return this from
+Lambda to APIG. I have to set APIG Binary for `image/jpeg`, and set
+the header `Accept` to `image/jpeg` to get APIG to convert the b64 to
+binary for the client.
 
-  "--------------------------dc53a7a19017bf09
-  Content-Disposition: form-data; name=\"file\"; filename=\"CSLOGO.gif\"
-  Content-Type: image/gif
+  curl -v -H "Accept: image/jpeg" -F FILENAME=TESTME.gif -F file=@../CSLOGO.gif $API > out.jpg
 
-  GIF87a\u001a...\n\u0000;
-  --------------------------dc53a7a19017bf09--
+I have found adding the Binary Support to be unreliable: sometimes the
+changes "stick", other ties it acts like nothing happened. I believe
+simply adding the media types doesn't affect the deployed APIG
+themselves, so you need to redeploy them. You can either do it with
+the CLI::
 
-I'm struggling with what appears to be a very buggy CGI module parsing
-the form.  After hacking it to extract the incoming image and saving
-it to disk, we see it's mangled; is it CGI or is it lack of binary in APIG?
+  sls deploy
 
+Or on the AWS console, APIGI, chose your gateway, then Resources,
+Actions -> Deploy API.
 
