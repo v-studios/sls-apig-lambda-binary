@@ -1,0 +1,52 @@
+{
+  "resource": "/",
+  "path": "/",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "image/jpeg",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "a6wega9q5e.execute-api.us-east-1.amazonaws.com",
+    "User-Agent": "curl/7.43.0",
+    "Via": "1.1 90ae7a2049c2513b89b7c6134cad70b6.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "_MVPzsFCw1sZGaViOIIsZN1RuBmvDPB3etTO-lTTB2q8ZLTqxlpqnw==",
+    "X-Amzn-Trace-Id": "Root=1-591caf71-05ea659d623f371274a9d0c1",
+    "X-Forwarded-For": "131.182.222.164, 205.251.252.201",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "path": "/dev/",
+    "accountId": "304932368623",
+    "resourceId": "qy8jkoan31",
+    "stage": "dev",
+    "requestId": "9c3f7e85-3b3d-11e7-9262-79d89a54419d",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "apiKey": "",
+      "sourceIp": "131.182.222.164",
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "curl/7.43.0",
+      "user": null
+    },
+    "resourcePath": "/",
+    "httpMethod": "POST",
+    "apiId": "a6wega9q5e"
+  },
+  "body": "RklMRU5BTUU9Q1NMT0dPJmZpbGU9R0lGODdhJTFBJTAwJTFBJTAwJUYwJTAwJTAwJTAwJTAwJTAwJUZGJUZGJUZGJTJDJTAwJTAwJTAwJTAwJTFBJTAwJTFBJTAwJTAwJTAyVSUwQyU4RSVBOSU4QiUwNiUwMSVBMyU5QyVENCUzRCVDQiVGMiU4MSU1QiVGQiVENm0lRDUlRTclOTQlMTUlQTclOTUlRTIlQzclQTglMTclQkIlQjglRTglODklODElQ0Z6JTlEcTglRDclMjlvJTgyJUREJTg2JTNEJTFBJThBJTg4M0p4OCVENiUwQyUyOCU3QyUxMiU5NSUzRCVBNkglOTklMEMlMDklQjMlQzMlRUQlMEIlQTklQTBKJTdEOSU5QSU4RCVCQyUwRHolMUIlMTYlQjElQjklQkJOJTA0JTBBJTAwJTNC",
+  "isBase64Encoded": true
+}

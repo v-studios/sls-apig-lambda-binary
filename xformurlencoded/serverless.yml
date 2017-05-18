@@ -1,0 +1,14 @@
+service: xformurlencoded
+
+provider:
+  name: aws
+  runtime: python3.6
+
+
+functions:
+  formdata:
+    handler: xformurlencoded.handler
+    events:
+      - http:
+          path: /
+          method: post

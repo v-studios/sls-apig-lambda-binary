@@ -1,0 +1,60 @@
+{
+  "event": {
+    "resource": "/",
+    "path": "/",
+    "httpMethod": "POST",
+    "headers": {
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept-Language": "en-US,en;q=0.8,es;q=0.6",
+      "cache-control": "max-age=0",
+      "CloudFront-Forwarded-Proto": "https",
+      "CloudFront-Is-Desktop-Viewer": "true",
+      "CloudFront-Is-Mobile-Viewer": "false",
+      "CloudFront-Is-SmartTV-Viewer": "false",
+      "CloudFront-Is-Tablet-Viewer": "false",
+      "CloudFront-Viewer-Country": "US",
+      "content-type": "application/x-www-form-urlencoded",
+      "dnt": "1",
+      "Host": "a6wega9q5e.execute-api.us-east-1.amazonaws.com",
+      "origin": "null",
+      "upgrade-insecure-requests": "1",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36",
+      "Via": "2.0 e7cd2a6dba84b8f01078edc2b3cd48e6.cloudfront.net (CloudFront)",
+      "X-Amz-Cf-Id": "z_Zw8L1J3AjCgIpBwgb23gNvjG1khaHQL8yCgxAdpLgp0uDavEF00w==",
+      "X-Amzn-Trace-Id": "Root=1-591cb4d1-3ce2481a57bc8e05053d93df",
+      "X-Forwarded-For": "131.182.222.164, 205.251.252.171",
+      "X-Forwarded-Port": "443",
+      "X-Forwarded-Proto": "https"
+    },
+    "queryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+      "path": "/dev/",
+      "accountId": "304932368623",
+      "resourceId": "qy8jkoan31",
+      "stage": "dev",
+      "requestId": "d06e88cc-3b40-11e7-babb-b770bc2a58fc",
+      "identity": {
+        "cognitoIdentityPoolId": null,
+        "accountId": null,
+        "cognitoIdentityId": null,
+        "caller": null,
+        "apiKey": "",
+        "sourceIp": "131.182.222.164",
+        "accessKey": null,
+        "cognitoAuthenticationType": null,
+        "cognitoAuthenticationProvider": null,
+        "userArn": null,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36",
+        "user": null
+      },
+      "resourcePath": "/",
+      "httpMethod": "POST",
+      "apiId": "a6wega9q5e"
+    },
+    "body": "ZmlsZT1TY3JlZW4rU2hvdCsyMDE3LTA1LTA1K2F0KzIuMDUuMzIrUE0ucG5nJmZpbGVuYW1lPVNDUkVBTVNIT1Q=",
+    "isBase64Encoded": true
+  }
+}
