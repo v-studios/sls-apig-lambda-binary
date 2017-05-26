@@ -16,7 +16,7 @@ Per W3:
 
 Curl's -F is said to do multipart/form-data so lets start there::
 
-  curl -v -F file=@../CSLOGO.gif $FORMDATA | python -mjson.tool
+  curl -v --form file=@../CSLOGO.gif $FORMDATA | python -mjson.tool
 
 I have to set APIG Binary Support for `multipart/form-data` to get the
 binary safely.
@@ -50,3 +50,15 @@ remember to redeploy. For this app, I've replaced my image/jpeg with
 One day maybe AWS CloudFormation will learn about Binary Support so
 that the Serverless Framework team can add this to the serverless.yml
 file.
+
+
+Later next week...
+==================
+
+Currently have APIG binary for:
+* multipart/form-data
+* image/*
+
+So we should be able to post a form  as multipart/form-data like::
+
+  curl -H "Accept: image/*" --form file=@CSLOGO.gif $FORMDATA > FORMDATA.jpg

@@ -5,7 +5,7 @@
 #
 #   curl -H "Accept: image/jpeg" -F file=@../CSLOGO.gif $API
 
-from cgi import parse_header, parse_multipart
+from cgi import FieldStorage, parse_header, parse_multipart
 from base64 import b64decode, b64encode
 from io import BytesIO
 from json import dumps
@@ -15,6 +15,8 @@ from subprocess import check_output
 def handler(event, context):
     # The data should have been sent with Content-Type that the APIG recognizes
     # as binary so it will base64-encode it to us. Decode and save image.
+
+    print('# event: {}'.format(dumps(event)))  # save event to try FieldStorage
 
     content_type = event['headers']['Content-Type']
     if not content_type.startswith('multipart/form-data; boundary='):
@@ -27,13 +29,48 @@ def handler(event, context):
 
     # Parse the multipart form, we require at least 'file'
 
+    body_bytes = b64decode(event['body'])
+    body_fp = BytesIO(body_bytes)
+
+    # The 'easy' way doesn't give us the filename or type, just the contents
+    # The FieldStorage does, but I can't get the content yet; try here.
+
+    headers = {k.lower(): v for k, v in event['headers'].items()}
+    form = FieldStorage(fp=body_fp,
+                        environ={'REQUEST_METHOD': event['httpMethod']},
+                        headers=headers,
+                        keep_blank_values=True,
+                        strict_parsing=True)
+    assert 'file' in form  # that's what we insist it's called for now
+    filefield = form['file']
+    if not filefield.file:
+        print('Does not have a "file" part, not an upload')
+        exit
+
+    fn = filefield.filename
+    ft = filefield.type  # image/gif
+    ff = filefield.file  # has read() but returns b''  WTF?
+    fp = filefield.fp    # different addrss, read() returns b'', WTF?
+    fv = filefield.value  # as string, uploads transperanetly reads file every time you request
+
+    print(fn, ft, ff, fp, fv)
+    print(ff.read())
+    print(fp.read())
+
+    return {
+        'statusCode': 200,
+        'body': 'fn={} ft={} ff={} fp={} fv={}'.format(
+            fn, ft, ff, fp, fv),
+        'isBase64Encoded': True,
+        'headers':  {'Content-Type': 'text/json'},
+    }
+
+    ###########################################################################
+
     (ctype, pdict) = parse_header(content_type)
     if type(pdict['boundary']) is not bytes:
         # fix parse_header bug: wants bytes for boundary, not str
         pdict['boundary'] = bytes(pdict['boundary'], 'utf8')
-
-    body_bytes = b64decode(event['body'])
-    body_fp = BytesIO(body_bytes)
 
     # parser does not get filename from content-disposition::
     #  Content-Disposition: form-data; name="file"; filename="CSLOGO.gif"
@@ -66,6 +103,7 @@ def handler(event, context):
     # "Accept: image/jpeg" for the APIG to turn the encoded string in to binary
     # for the client HTTP response.
 
+    # This is too restrictive, should allow image/*, */*
     if event['headers']['Accept'] != 'image/jpeg':
         return {'statusCode': 400,
                 'body': dumps({'message': 'Accept must specify image/jpeg'})}

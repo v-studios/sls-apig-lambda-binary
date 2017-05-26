@@ -1,0 +1,52 @@
+{
+  "resource": "/",
+  "path": "/",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "image/jpeg",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Content-Type": "multipart/form-data; boundary=------------------------ac23260d12225f00",
+    "Host": "ewguj0x0kl.execute-api.us-east-1.amazonaws.com",
+    "User-Agent": "curl/7.43.0",
+    "Via": "1.1 551e03500be8234fa7587d1e732809b2.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "wLUBZI4NvazPxy6cZu8hN5WPUad7Hex0rsxPqw1g9T4FWOKu3Xv2iw==",
+    "X-Amzn-Trace-Id": "Root=1-59286abf-4523717d7e8bb980696b289e",
+    "X-Forwarded-For": "131.182.222.224, 205.251.252.179",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "path": "/dev/",
+    "accountId": "304932368623",
+    "resourceId": "dio6o12zie",
+    "stage": "dev",
+    "requestId": "b80b2075-423b-11e7-ae4e-a9819d8ca6c1",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "apiKey": "",
+      "sourceIp": "131.182.222.224",
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "curl/7.43.0",
+      "user": null
+    },
+    "resourcePath": "/",
+    "httpMethod": "POST",
+    "apiId": "ewguj0x0kl"
+  },
+  "body": "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1hYzIzMjYwZDEyMjI1ZjAwDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImZpbGUiOyBmaWxlbmFtZT0iQ1NMT0dPLmdpZiINCkNvbnRlbnQtVHlwZTogaW1hZ2UvZ2lmDQoNCkdJRjg3YRoAGgDwAAAAAAD///8sAAAAABoAGgAAAlUMjqmLBgGjnNQ9y/KBW/vWbdXnlBWnleLHqBe7uOiJgc96nXE41ylvgt2GPRqKiDNKeDjWDCh8EpU9pkiZDAmzw+0LqaBKfTmajbwNehsWsbm7TgQKADsNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tYWMyMzI2MGQxMjIyNWYwMC0tDQo=",
+  "isBase64Encoded": true
+}
